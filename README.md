@@ -4,11 +4,8 @@ API для сайта микроблогов.
 Доступные модели: Посты, Группы, Подписки, Комментарии
 
 ### Описание API
-1. Запустить проект: В режиме разработчика перейти
 
-```
-http://127.0.0.1:8000/swagger/
-```
+
 
 ### Как запустить проект:
 
@@ -25,7 +22,7 @@ cd api_final_yatube
 2. Cоздать и активировать виртуальное окружение:
 
 ```
-python3 -m venv venv
+python -m venv venv
 ```
 
 ```
@@ -35,21 +32,24 @@ source venv/Scripts/activate
 3. Установить зависимости из файла requirements.txt:
 
 ```
-python3 -m pip install --upgrade pip
+python -m pip install --upgrade pip
 ```
 
 ```
 pip install -r requirements.txt
 ```
 
-4. Выполнить миграции:
+4. Выполнить миграции в папке yatube_api:
 
 ```
-python3 manage.py migrate
+cd yatube_api
+python manage.py migrate
 ```
 
 Запустить проект:
 
 ```
-python3 manage.py runserver
+python manage.py runserver
 ```
+### Примеры запросов
+
