@@ -3,7 +3,6 @@
 API для сайта микроблогов.
 Доступные модели: Посты, Группы, Подписки, Комментарии
 
-### Описание API
 
 
 
@@ -91,18 +90,34 @@ python manage.py runserver
 }
 ```
 
-#### 2. Запрос к посту
 
-[GET, PULL, PATCH, DELETE] http://127.0.0.1:8000/api/v1/posts/{id}/
+#### 3. Запрос к комментариям поста
+
+[GET, POST] http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/
+
+#### Response
+```
+[
+    {
+        "id": 0,
+        "author": "string",
+        "text": "string",
+        "created": "2019-08-24T14:15:22Z",
+        "post": 0
+    }
+]
+```
+
+
+#### 4. Подписка на автора
+
+[GET, POST] http://127.0.0.1:8000/api/v1/follow/
 
 #### Response
 ```
 {
-  "id": 0,
-  "author": "string",
-  "text": "string",
-  "pub_date": "2019-08-24T14:15:22Z",
-  "image": "string",
-  "group": 0
+    "following": "string"
 }
 ```
+
+
