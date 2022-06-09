@@ -90,3 +90,19 @@ python manage.py runserver
   "group": 0
 }
 ```
+
+#### 2. Запрос к посту
+
+[GET, PULL, PATCH, DELETE] http://127.0.0.1:8000/api/v1/posts/{id}/
+
+#### Response
+```
+{
+  "id": 0,
+  "author": "string",
+  "text": "string",
+  "pub_date": "2019-08-24T14:15:22Z",
+  "image": "string",
+  "group": 0
+}
+```
