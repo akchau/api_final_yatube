@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, exceptions, permissions, filters, mixins
+from rest_framework import viewsets, exceptions, permissions, filters
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 
+from .mixins import CreateListViewSet
 from .serializers import (
     PostSerializer,
     GroupSerializer,
@@ -25,26 +26,11 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     "Вьюсет для групп."
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = (AllowAny,)
-
-    def perform_create(self, serializer):
-        raise exceptions.MethodNotAllowed(
-            'Метод не разрешен.'
-        )
-
-    def perform_update(self, serializer):
-        raise exceptions.MethodNotAllowed(
-            'Метод не разрешен.'
-        )
-
-    def perform_destroy(self, instance):
-        raise exceptions.MethodNotAllowed(
-            'Метод не разрешен.'
-        )
 
 
 class CommentViewSet(viewsets.ModelViewSet):
@@ -63,12 +49,6 @@ class CommentViewSet(viewsets.ModelViewSet):
             author=self.request.user,
             post=get_object_or_404(Post, pk=pk_post)
         )
-
-
-class CreateListViewSet(mixins.CreateModelMixin,
-                        mixins.ListModelMixin,
-                        viewsets.GenericViewSet):
-    pass
 
 
 class FollowViewSet(CreateListViewSet):
